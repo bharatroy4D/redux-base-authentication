@@ -1,11 +1,12 @@
 
 import './App.css'
+import Login from './pages/login/Login'
 
 function App() {
 
   return (
     <>
-    <h1>Vite project</h1>
+      <Login></Login>
     </>
   )
 }
