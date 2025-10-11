@@ -8,13 +8,14 @@ const Navbar = () => {
 
   const links = [
     { name: "Home", path: "/" },
+    { name: "Products", path: "/products" },
     { name: "Login", path: "/login" },
     { name: "Register", path: "/register" },
     { name: "Dashboard", path: "/dashboard" },
   ];
 
   return (
-    <nav className="bg-white shadow-md fixed top-0 left-0 w-full z-50">
+    <nav className="bg-white shadow-md">
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
         {/* Logo */}
         <div className="text-2xl md:text-3xl font-extrabold text-indigo-600 tracking-wide cursor-pointer">

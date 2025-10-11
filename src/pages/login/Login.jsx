@@ -26,7 +26,7 @@ const Login = () => {
         <div>
             <form
                 onSubmit={handleLogin}
-                className="max-w-md mx-auto mt-24 bg-white shadow-xl rounded-3xl p-10 border border-gray-100"
+                className="max-w-md mx-auto mt-24 bg-gray-200 shadow-xl rounded-3xl p-10 border border-gray-100"
             >
                 {/* Header */}
                 <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
