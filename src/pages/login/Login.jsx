@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { useLoginMutation } from '../../redux/feature/auth/authApi';
 import { setCredentials } from '../../redux/feature/auth/authSlice';
 import { useNavigate } from 'react-router-dom';
 const Login = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { user, isAuthenticated } = useSelector((state) => state.auth)
-    const [login, { isLoading }] = useLoginMutation();
+    const [login] = useLoginMutation();
     const [form, setForm] = useState({ email: "", password: "" });
 
     const handleChange = (e) => {
