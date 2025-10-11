@@ -4,7 +4,7 @@ import { useRegisterMutation } from "../../redux/feature/auth/authApi";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
-    const [registerUser, { isLoading }] = useRegisterMutation();
+    const [register, { isLoading }] = useRegisterMutation();
     const navigate = useNavigate();
 
     const [form, setForm] = useState({
@@ -22,7 +22,7 @@ const Register = () => {
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
-            const res = await registerUser(form).unwrap();
+            const res = await register(form).unwrap();
             console.log("User registered:", res);
             alert("Registration successful!");
             navigate("/login");
@@ -51,7 +51,7 @@ const Register = () => {
                         value={form.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-3 py-2 border rounded-md focus:outline-indigo-500"
+                        className="w-full px-3 py-2 mt-2 border border-gray-400 text-gray-500 rounded-md focus:outline-none focus:border-indigo-500 focus:ring-2  "
                     />
                 </div>
 
@@ -64,7 +64,7 @@ const Register = () => {
                         value={form.password}
                         onChange={handleChange}
                         required
-                        className="w-full px-3 py-2 border rounded-md focus:outline-indigo-500"
+                        className="w-full px-3 py-2 mt-2 border border-gray-400 text-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-400"
                     />
                 </div>
 
