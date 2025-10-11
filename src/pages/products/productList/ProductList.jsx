@@ -1,12 +1,29 @@
 import React from "react";
-import { useGetProductsQuery } from "../../../redux/feature/Products/ProductsApi";
+import { 
+  useGetProductsQuery, 
+  useDeleteProductMutation 
+} from "../../../redux/feature/Products/ProductsApi";
+import { FiTrash2 } from "react-icons/fi"; // Trash icon
 
 const ProductList = () => {
-  // RTK Query hook
+  // RTK Query hooks
   const { data, isLoading, isError } = useGetProductsQuery();
+  const [deleteProduct] = useDeleteProductMutation();
 
-  // Safe default: যদি data undefined হয়, products will be empty array
   const products = data || [];
+
+  // Delete handler
+  const handleDelete = async (id) => {
+    if (window.confirm("Are you sure you want to delete this product?")) {
+      try {
+        await deleteProduct(id).unwrap();
+        alert("✅ Product deleted successfully!");
+      } catch (err) {
+        console.error(err);
+        alert("❌ Failed to delete product!");
+      }
+    }
+  };
 
   // Loading state
   if (isLoading)
@@ -39,11 +56,31 @@ const ProductList = () => {
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {products.map((p) => (
           <div
-            key={p.id || p._id}
-            className="border rounded-2xl shadow-sm p-4 hover:shadow-lg transition-shadow duration-200 bg-white"
+            key={p._id || p.id}
+            className="relative border rounded-2xl shadow-sm p-4 hover:shadow-lg transition-shadow duration-200 bg-white"
           >
+            {/* Delete Icon */}
+            <button
+              onClick={() => handleDelete(p._id || p.id)}
+              className="absolute top-3 right-3 text-red-500 hover:text-red-700 transition"
+              title="Delete Product"
+            >
+              <FiTrash2 size={20} />
+            </button>
+
+            {/* Product Image */}
+            {p.imageUrl && (
+              <img
+                src={p.imageUrl}
+                alt={p.name}
+                className="w-full h-48 object-cover rounded-lg mb-4"
+              />
+            )}
+
+            {/* Product Name & Price */}
             <h3 className="text-indigo-600 font-semibold text-lg">{p.name}</h3>
             <p className="text-gray-600 mt-2">${p.price}</p>
+
             <button className="mt-4 w-full bg-indigo-500 hover:bg-indigo-600 text-white py-2 rounded-lg transition">
               View Details
             </button>

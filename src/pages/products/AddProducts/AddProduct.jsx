@@ -3,13 +3,13 @@ import { useAddProductMutation } from "../../../redux/feature/Products/ProductsA
 
 const AddProduct = () => {
   const [addProduct, { isLoading }] = useAddProductMutation();
-  const [form, setForm] = useState({ name: "", price: "" });
+  const [form, setForm] = useState({ name: "", price: "", imageUrl: "" });
   const [message, setMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!form.name || !form.price) {
+    if (!form.name || !form.price || !form.imageUrl) {
       setMessage("Please fill in all fields.");
       return;
     }
@@ -17,7 +17,7 @@ const AddProduct = () => {
     try {
       await addProduct(form).unwrap();
       setMessage("✅ Product added successfully!");
-      setForm({ name: "", price: "" });
+      setForm({ name: "", price: "", imageUrl: "" });
     } catch (error) {
       setMessage("❌ Failed to add product!");
     }
@@ -26,6 +26,7 @@ const AddProduct = () => {
   return (
     <div>
       <form onSubmit={handleSubmit} className="space-y-4">
+        {/* Product Name */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Product Name
@@ -39,6 +40,7 @@ const AddProduct = () => {
           />
         </div>
 
+        {/* Price */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Price
@@ -52,6 +54,21 @@ const AddProduct = () => {
           />
         </div>
 
+        {/* Image URL */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Image URL
+          </label>
+          <input
+            type="text"
+            placeholder="https://URL"
+            value={form.imageUrl}
+            onChange={(e) => setForm({ ...form, imageUrl: e.target.value })}
+            className="w-full px-4 py-2 text-gray-500 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+          />
+        </div>
+
+        {/* Submit Button */}
         <button
           type="submit"
           disabled={isLoading}
