@@ -1,7 +1,19 @@
 import React from "react";
 import { FaUser, FaChartLine, FaCog, FaSignOutAlt } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { logout } from "../../redux/feature/auth/authSlice"; // logout action import
 
 const Dashboard = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  // 🔹 Logout Function
+  const handleLogout = () => {
+    dispatch(logout()); // Redux state clear
+    navigate("/login"); // Login page e redirect
+  };
+
   return (
     <div className="flex h-screen bg-gray-100">
 
@@ -21,7 +33,12 @@ const Dashboard = () => {
             <li className="px-6 py-3 hover:bg-indigo-100 rounded-lg cursor-pointer flex items-center gap-3">
               <FaCog /> Settings
             </li>
-            <li className="px-6 py-3 mt-auto mb-6 hover:bg-red-100 rounded-lg cursor-pointer flex items-center gap-3 text-red-600">
+
+            {/* 🔹 Logout Button (Design same as before, just added onClick) */}
+            <li
+              onClick={handleLogout}
+              className="px-6 py-3 mt-auto mb-6 hover:bg-red-100 rounded-lg cursor-pointer flex items-center gap-3 text-red-600"
+            >
               <FaSignOutAlt /> Logout
             </li>
           </ul>

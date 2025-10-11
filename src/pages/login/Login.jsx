@@ -18,7 +18,7 @@ const Login = () => {
         try {
             const res = await login(form).unwrap();
             dispatch(setCredentials(res));
-            navigate("dashboard")
+            navigate("/dashboard")
         } catch (error) {
             console.error("Login failed", error)
         }
@@ -44,7 +44,7 @@ const Login = () => {
                         value={form.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-5 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-300"
+                        className="w-full px-5 py-3 border text-gray-700 border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-300"
                     />
                 </div>
 
@@ -58,7 +58,7 @@ const Login = () => {
                         value={form.password}
                         onChange={handleChange}
                         required
-                        className="w-full px-5 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-300"
+                        className="w-full px-5 py-3 border text-gray-700 border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-300"
                     />
                 </div>
 
