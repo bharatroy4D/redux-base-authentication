@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useLoginMutation } from '../../redux/feature/auth/authApi';
 import { setCredentials } from '../../redux/feature/auth/authSlice';
 import { useNavigate } from 'react-router-dom';
@@ -9,19 +9,23 @@ const Login = () => {
     const [login] = useLoginMutation();
     const [form, setForm] = useState({ email: "", password: "" });
 
+
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
     }
+
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
             const res = await login(form).unwrap();
             dispatch(setCredentials(res));
-            navigate("/dashboard")
+
+            navigate("/dashboard");
         } catch (error) {
             console.error("Login failed", error)
         }
-    }
+    };
+
     return (
         <div>
             <form

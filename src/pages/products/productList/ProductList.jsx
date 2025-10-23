@@ -1,18 +1,16 @@
 import React from "react";
-import { 
-  useGetProductsQuery, 
-  useDeleteProductMutation 
+import {
+  useGetProductsQuery,
+  useDeleteProductMutation
 } from "../../../redux/feature/Products/ProductsApi";
 import { FiTrash2 } from "react-icons/fi"; // Trash icon
 
 const ProductList = () => {
-  // RTK Query hooks
   const { data, isLoading, isError } = useGetProductsQuery();
   const [deleteProduct] = useDeleteProductMutation();
 
   const products = data || [];
 
-  // Delete handler
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this product?")) {
       try {
@@ -25,7 +23,6 @@ const ProductList = () => {
     }
   };
 
-  // Loading state
   if (isLoading)
     return (
       <div className="flex justify-center items-center h-64">
@@ -33,7 +30,6 @@ const ProductList = () => {
       </div>
     );
 
-  // Error state
   if (isError)
     return (
       <div className="text-center text-red-500 font-semibold mt-10">
@@ -41,7 +37,6 @@ const ProductList = () => {
       </div>
     );
 
-  // Empty state
   if (products.length === 0)
     return (
       <div className="text-center text-gray-500 font-medium mt-10">
@@ -49,7 +44,6 @@ const ProductList = () => {
       </div>
     );
 
-  // Main product grid
   return (
     <div>
       <h2 className="text-2xl font-semibold text-gray-700 mb-6">All Products</h2>
@@ -57,25 +51,27 @@ const ProductList = () => {
         {products.map((p) => (
           <div
             key={p._id || p.id}
-            className="relative border rounded-2xl shadow-sm p-4 hover:shadow-lg transition-shadow duration-200 bg-white"
+            className="border rounded-2xl shadow-sm p-4 hover:shadow-lg transition-shadow duration-200 bg-white"
           >
-            {/* Delete Icon */}
-            <button
-              onClick={() => handleDelete(p._id || p.id)}
-              className="absolute top-3 right-3 text-red-500 hover:text-red-700 transition"
-              title="Delete Product"
-            >
-              <FiTrash2 size={20} />
-            </button>
-
             {/* Product Image */}
             {p.imageUrl && (
               <img
                 src={p.imageUrl}
                 alt={p.name}
-                className="w-full h-48 object-cover rounded-lg mb-4"
+                className="w-full h-48 object-cover rounded-lg mb-2"
               />
             )}
+
+            {/* Delete Icon below Image */}
+            <div className="flex justify-end mb-2">
+              <button
+                onClick={() => handleDelete(p._id || p.id)}
+                className="text-red-500 hover:text-red-700 transition"
+                title="Delete Product"
+              >
+                <FiTrash2 size={20} />
+              </button>
+            </div>
 
             {/* Product Name & Price */}
             <h3 className="text-indigo-600 font-semibold text-lg">{p.name}</h3>

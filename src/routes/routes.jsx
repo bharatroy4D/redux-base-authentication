@@ -6,6 +6,7 @@ import Dashboard from "../pages/dashboard/Dashboard";
 import ProtectedRoute from "../components/PrivateRoute";
 import Products from "../pages/products/Products";
 import Home from "../pages/home/Home";
+import VerifyOtp from "../components/VerifyOtp";
 
 export const routes = createBrowserRouter([
     {
@@ -20,6 +21,10 @@ export const routes = createBrowserRouter([
             {
                 path: '/login',
                 element: <Login />
+            },
+            {
+                path: '/otp',
+                element: <VerifyOtp />
             },
             {
                 path: '/products',
