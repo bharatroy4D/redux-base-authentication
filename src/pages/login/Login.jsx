@@ -28,25 +28,12 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-700 via-purple-700 to-pink-600 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-700 via-purple-700 to-pink-600 py-5 px-4">
       <div className="w-full max-w-md bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl p-10 border border-white/40">
-        {/* Logo */}
-        <div className="flex justify-center mb-6">
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
-            alt="Login"
-            className="w-20 h-20"
-          />
-        </div>
-
         {/* Title */}
         <h2 className="text-3xl font-bold text-center text-gray-800 mb-2">
-          Welcome Back 👋
-        </h2>
-        <p className="text-center text-gray-500 mb-8">
-          Login to your account to continue
-        </p>
-
+          Login
+        </h2>        
         {/* Error Message */}
         {error && (
           <p className="text-center text-red-600 mb-4 font-medium">{error}</p>
