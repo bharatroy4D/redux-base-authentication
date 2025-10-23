@@ -1,9 +1,6 @@
 import React from "react";
-import {
-  useGetProductsQuery,
-  useDeleteProductMutation
-} from "../../../redux/feature/Products/ProductsApi";
-import { FiTrash2 } from "react-icons/fi"; // Trash icon
+import { useGetProductsQuery, useDeleteProductMutation } from "../../../redux/feature/Products/ProductsApi";
+import { FiTrash2 } from "react-icons/fi";
 
 const ProductList = () => {
   const { data, isLoading, isError } = useGetProductsQuery();
@@ -23,47 +20,21 @@ const ProductList = () => {
     }
   };
 
-  if (isLoading)
-    return (
-      <div className="flex justify-center items-center h-64">
-        <p className="text-gray-500 text-lg animate-pulse">Loading products...</p>
-      </div>
-    );
-
-  if (isError)
-    return (
-      <div className="text-center text-red-500 font-semibold mt-10">
-        Failed to load products 😞
-      </div>
-    );
-
-  if (products.length === 0)
-    return (
-      <div className="text-center text-gray-500 font-medium mt-10">
-        No products available.
-      </div>
-    );
+  if (isLoading) return <p className="text-gray-500 animate-pulse text-center mt-10">Loading products...</p>;
+  if (isError) return <p className="text-red-500 text-center mt-10">Failed to load products.</p>;
+  if (products.length === 0) return <p className="text-gray-500 text-center mt-10">No products available.</p>;
 
   return (
     <div>
       <h2 className="text-2xl font-semibold text-gray-700 mb-6">All Products</h2>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {products.map((p) => (
-          <div
-            key={p._id || p.id}
-            className="border rounded-2xl shadow-sm p-4 hover:shadow-lg transition-shadow duration-200 bg-white"
-          >
-            {/* Product Image */}
+          <div key={p._id || p.id} className="bg-white rounded-2xl shadow-md p-4 hover:shadow-xl transition">
             {p.imageUrl && (
-              <img
-                src={p.imageUrl}
-                alt={p.name}
-                className="w-full h-48 object-cover rounded-lg mb-2"
-              />
+              <img src={p.imageUrl} alt={p.name} className="w-full h-48 object-cover rounded-lg mb-3" />
             )}
-
-            {/* Delete Icon below Image */}
-            <div className="flex justify-end mb-2">
+            <div className="flex justify-between items-center mb-2">
+              <h3 className="text-indigo-600 font-semibold text-lg">{p.name}</h3>
               <button
                 onClick={() => handleDelete(p._id || p.id)}
                 className="text-red-500 hover:text-red-700 transition"
@@ -72,14 +43,8 @@ const ProductList = () => {
                 <FiTrash2 size={20} />
               </button>
             </div>
-
-            {/* Product Name & Price */}
-            <h3 className="text-indigo-600 font-semibold text-lg">{p.name}</h3>
-            <p className="text-gray-600 mt-2">${p.price}</p>
-
-            <button className="mt-4 w-full bg-indigo-500 hover:bg-indigo-600 text-white py-2 rounded-lg transition">
-              View Details
-            </button>
+            <p className="text-gray-600 mb-3">${p.price}</p>
+            <button className="w-full py-2 bg-indigo-500 hover:bg-indigo-600 text-white rounded-lg transition">View Details</button>
           </div>
         ))}
       </div>
