@@ -32,7 +32,7 @@ const AddProduct = () => {
             placeholder="Enter product name"
             value={form.name}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
-            className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+            className="w-full px-4 py-3 border text-gray-600 border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
           />
         </div>
 
@@ -43,7 +43,7 @@ const AddProduct = () => {
             placeholder="Enter price"
             value={form.price}
             onChange={(e) => setForm({ ...form, price: e.target.value })}
-            className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+            className="w-full px-4 py-3 border text-gray-600 border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
           />
         </div>
 
@@ -54,7 +54,7 @@ const AddProduct = () => {
             placeholder="https://URL"
             value={form.imageUrl}
             onChange={(e) => setForm({ ...form, imageUrl: e.target.value })}
-            className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+            className="w-full px-4 py-3 border text-gray-600 border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
           />
         </div>
 
